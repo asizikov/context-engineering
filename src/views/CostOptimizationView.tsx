@@ -48,6 +48,12 @@ const grid: CSSProperties = {
   maxWidth: 540,
 }
 
+const GRID_STYLE = `
+  @media (max-width: 540px) {
+    .cost-grid { grid-template-columns: 1fr !important; }
+  }
+`
+
 interface StrategyProps {
   icon: string
   title: string
@@ -126,6 +132,7 @@ const footer: CSSProperties = {
 export default function CostOptimizationView() {
   return (
     <div style={page}>
+      <style>{GRID_STYLE}</style>
       <span style={chapterLabel}>Chapter 17</span>
       <h2 style={heading}>Cost Optimization</h2>
 
@@ -135,7 +142,7 @@ export default function CostOptimizationView() {
         management can dramatically reduce spend without sacrificing output.
       </p>
 
-      <div style={grid}>
+      <div style={grid} className="cost-grid">
         {STRATEGIES.map((s) => (
           <StrategyCard key={s.title} {...s} />
         ))}
