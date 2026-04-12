@@ -60,7 +60,6 @@ function GuardrailCard({ color, icon, title, description, detail }: GuardrailPro
   return (
     <div style={{
       border: '1.5px solid #e0e0e0',
-      borderLeft: `5px solid ${color}`,
       borderRadius: 14,
       padding: '20px 24px',
       background: '#fafafa',
