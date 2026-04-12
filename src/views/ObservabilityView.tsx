@@ -48,14 +48,14 @@ const layers: CSSProperties = {
   gap: 14,
 }
 
-interface GuardrailProps {
+interface CardProps {
   icon: string
   title: string
   description: string
   detail: string
 }
 
-function GuardrailCard({ icon, title, description, detail }: GuardrailProps) {
+function Card({ icon, title, description, detail }: CardProps) {
   return (
     <div style={{
       border: '1.5px solid #e0e0e0',
@@ -85,36 +85,36 @@ function GuardrailCard({ icon, title, description, detail }: GuardrailProps) {
   )
 }
 
-const GUARDRAILS: GuardrailProps[] = [
+const ITEMS: CardProps[] = [
   {
-    icon: '📦',
-    title: 'Environment Isolation',
-    description: 'Run agents in sandboxed containers or cloud environments so they can\'t affect your local machine or production systems.',
-    detail: 'Containers • Copilot Cloud Agent • VM sandboxes • Ephemeral workspaces',
+    icon: '📡',
+    title: 'Observability',
+    description: 'OpenTelemetry traces and structured logs let you monitor what the agent does, how long it takes, and where it fails — essential for debugging and auditing.',
+    detail: 'OTEL traces • Structured logs • Token usage metrics • Latency tracking',
   },
   {
-    icon: '🪝',
-    title: 'Hooks',
-    description: 'Intercept agent actions before they execute. Hooks can block dangerous commands, require approval for destructive operations, or enforce policies.',
-    detail: 'Pre-commit hooks • Tool approval gates • Command allowlists',
+    icon: '✍️',
+    title: 'Commit Attribution',
+    description: 'Every change the agent makes is traceable. Co-authored-by trailers, separate bot accounts, and audit trails ensure clear accountability.',
+    detail: 'Co-authored-by: Copilot <...@users.noreply.github.com>',
   },
 ]
 
-export default function SecurityGuardrailsView() {
+export default function ObservabilityView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 19</span>
-      <h2 style={heading}>Security Guardrails</h2>
+      <span style={chapterLabel}>Chapter 20</span>
+      <h2 style={heading}>Observability</h2>
 
       <p style={body}>
-        Giving agents powerful tools requires equally powerful
-        <strong> safeguards</strong>. Defense in depth — from isolation to
-        observability — keeps agents productive without compromising safety.
+        Knowing <strong>what the agent did</strong> — and why — is as important
+        as what it produced. Tracing, structured logs, and clear attribution
+        turn a black box into an auditable, debuggable system.
       </p>
 
       <div style={layers}>
-        {GUARDRAILS.map((g) => (
-          <GuardrailCard key={g.title} {...g} />
+        {ITEMS.map((item) => (
+          <Card key={item.title} {...item} />
         ))}
       </div>
     </div>
