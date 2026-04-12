@@ -103,7 +103,7 @@ const EXAMPLE = `{
 export default function ToolCallsView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 03</span>
+      <span style={chapterLabel}>Chapter 04</span>
       <h2 style={heading}>Tool Calls</h2>
 
       <p style={body}>
