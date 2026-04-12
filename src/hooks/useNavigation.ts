@@ -4,6 +4,7 @@ export type NavigationDirection = 'forward' | 'back' | 'none'
 
 export interface NavigationState {
   currentIndex: number
+  maxVisited: number
   direction: NavigationDirection
   canGoBack: boolean
   canGoForward: boolean
@@ -14,6 +15,7 @@ export interface NavigationState {
 
 export function useNavigation(totalViews: number): NavigationState {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [maxVisited, setMaxVisited] = useState(0)
   const [direction, setDirection] = useState<NavigationDirection>('none')
 
   const canGoBack = currentIndex > 0
@@ -23,7 +25,9 @@ export function useNavigation(totalViews: number): NavigationState {
     setCurrentIndex((prev) => {
       if (prev < totalViews - 1) {
         setDirection('forward')
-        return prev + 1
+        const next = prev + 1
+        setMaxVisited((m) => Math.max(m, next))
+        return next
       }
       return prev
     })
@@ -44,6 +48,7 @@ export function useNavigation(totalViews: number): NavigationState {
       setCurrentIndex((prev) => {
         if (index >= 0 && index < totalViews && index !== prev) {
           setDirection(index > prev ? 'forward' : 'back')
+          setMaxVisited((m) => Math.max(m, index))
           return index
         }
         return prev
@@ -55,6 +60,7 @@ export function useNavigation(totalViews: number): NavigationState {
   return useMemo(
     () => ({
       currentIndex,
+      maxVisited,
       direction,
       canGoBack,
       canGoForward,
@@ -62,6 +68,6 @@ export function useNavigation(totalViews: number): NavigationState {
       goBack,
       goTo,
     }),
-    [currentIndex, direction, canGoBack, canGoForward, goForward, goBack, goTo],
+    [currentIndex, maxVisited, direction, canGoBack, canGoForward, goForward, goBack, goTo],
   )
 }
