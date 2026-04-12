@@ -70,34 +70,17 @@ const diagram: CSSProperties = {
   maxWidth: 560,
   border: '1.5px solid #e0e0e0',
   borderRadius: 16,
-  padding: '36px 28px 28px',
+  padding: '32px 24px 24px',
   background: '#fafafa',
-  position: 'relative',
-}
-
-const timeline: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
-  gap: 0,
-  position: 'relative',
+  alignItems: 'center',
 }
 
 const nodeRow: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
-  gap: 14,
-  position: 'relative',
-  paddingLeft: 28,
-  minHeight: 48,
-}
-
-const rail: CSSProperties = {
-  position: 'absolute',
-  left: 11,
-  top: 0,
-  bottom: 0,
-  width: 2,
-  background: '#ddd',
+  gap: 10,
 }
 
 const dot = (color: string, size = 12): CSSProperties => ({
@@ -107,8 +90,6 @@ const dot = (color: string, size = 12): CSSProperties => ({
   background: color,
   border: `2px solid ${color}`,
   flexShrink: 0,
-  position: 'relative',
-  zIndex: 1,
 })
 
 const nodeLabel: CSSProperties = {
@@ -123,48 +104,39 @@ const nodeSublabel: CSSProperties = {
   marginLeft: 6,
 }
 
-const branchContainer: CSSProperties = {
-  marginLeft: 28,
-  paddingLeft: 32,
-  borderLeft: '2px dashed #4caf50',
-  position: 'relative',
+const vLine = (color = '#ccc', h = 20): CSSProperties => ({
+  width: 2,
+  height: h,
+  background: color,
+})
+
+const branchCol: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: 0,
 }
 
-const branchLabel: CSSProperties = {
-  position: 'absolute',
-  left: -62,
-  top: 8,
+const branchHeader = (color: string): CSSProperties => ({
   fontSize: '11px',
   fontWeight: 700,
-  color: '#4caf50',
   letterSpacing: '0.08em',
   textTransform: 'uppercase',
-  transform: 'rotate(-90deg)',
-  transformOrigin: 'center center',
-}
-
-const branchNode: CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: 14,
-  minHeight: 44,
-}
-
-const branchDot: CSSProperties = {
-  ...dot('#4caf50', 10),
-}
-
-const branchText: CSSProperties = {
-  fontSize: '13px',
-  fontWeight: 600,
-  color: '#4caf50',
-}
+  color,
+  marginBottom: 6,
+})
 
 const strikeLabel: CSSProperties = {
-  fontSize: '13px',
+  fontSize: '12px',
   fontWeight: 600,
   color: '#c62828',
   textDecoration: 'line-through',
+}
+
+const branchText: CSSProperties = {
+  fontSize: '12px',
+  fontWeight: 600,
+  color: '#4caf50',
 }
 
 const caption: CSSProperties = {
@@ -206,50 +178,78 @@ export default function CorrectingMistakesView() {
         wrong attempts lingering in the window.
       </p>
 
-      {/* ── Branch-off diagram ── */}
+      {/* ── Tree branch-off diagram ── */}
       <div style={diagram}>
-        <div style={timeline}>
-          <div style={rail} />
+        {/* Trunk */}
+        <div style={nodeRow}>
+          <div style={dot('#111')} />
+          <span style={nodeLabel}>Turn 1</span>
+          <span style={nodeSublabel}>User prompt</span>
+        </div>
+        <div style={vLine()} />
 
-          <div style={nodeRow}>
-            <div style={dot('#111')} />
-            <span style={nodeLabel}>Turn 1</span>
-            <span style={nodeSublabel}>User prompt</span>
+        <div style={nodeRow}>
+          <div style={dot('#111')} />
+          <span style={nodeLabel}>Turn 2</span>
+          <span style={nodeSublabel}>Agent plans approach</span>
+        </div>
+        <div style={vLine()} />
+
+        <div style={nodeRow}>
+          <div style={dot('#f59e0b', 14)} />
+          <span style={{ ...nodeLabel, color: '#111', fontWeight: 700 }}>
+            Turn 3 — <span style={{ color: '#4caf50' }}>checkpoint ✓</span>
+          </span>
+        </div>
+
+        {/* Short stem from checkpoint to the fork */}
+        <div style={vLine('#bbb', 8)} />
+
+        {/* Fork + branches (2-col grid) */}
+        <div style={{ width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', rowGap: 0 }}>
+          {/* Y-connector: two arms that meet at center */}
+          <div style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'center' }}>
+            <div style={{
+              width: '25%',
+              height: 24,
+              borderTop: '2px solid #c62828',
+              borderLeft: '2px solid #c62828',
+              borderTopLeftRadius: 8,
+            }} />
+            <div style={{
+              width: '25%',
+              height: 24,
+              borderTop: '2px solid #4caf50',
+              borderRight: '2px solid #4caf50',
+              borderTopRightRadius: 8,
+            }} />
           </div>
 
-          <div style={nodeRow}>
-            <div style={dot('#111')} />
-            <span style={nodeLabel}>Turn 2</span>
-            <span style={nodeSublabel}>Agent plans approach</span>
-          </div>
-
-          <div style={nodeRow}>
-            <div style={dot('#111')} />
-            <span style={nodeLabel}>
-              Turn 3 — <span style={{ color: '#4caf50', fontWeight: 700 }}>checkpoint ✓</span>
-            </span>
-          </div>
-
-          {/* Mistake branch (faded) */}
-          <div style={nodeRow}>
-            <div style={dot('#c62828')} />
-            <span style={strikeLabel}>Turn 4 — wrong approach</span>
-          </div>
-          <div style={{ ...nodeRow, opacity: 0.35 }}>
-            <div style={dot('#c62828', 8)} />
-            <span style={strikeLabel}>Turn 5 — deeper into mistake…</span>
-          </div>
-
-          {/* Branch-off */}
-          <div style={branchContainer}>
-            <span style={branchLabel}>branch</span>
-            <div style={branchNode}>
-              <div style={branchDot} />
-              <span style={branchText}>Turn 4′ — fresh prompt, clean context</span>
+          {/* Left branch — mistake */}
+          <div style={branchCol}>
+            <span style={branchHeader('#c62828')}>✗ mistake</span>
+            <div style={nodeRow}>
+              <div style={dot('#c62828', 10)} />
+              <span style={strikeLabel}>Turn 4 — wrong approach</span>
             </div>
-            <div style={branchNode}>
-              <div style={branchDot} />
-              <span style={branchText}>Turn 5′ — correct path continues</span>
+            <div style={vLine('#c62828', 12)} />
+            <div style={{ ...nodeRow, opacity: 0.4 }}>
+              <div style={dot('#c62828', 8)} />
+              <span style={strikeLabel}>Turn 5 — deeper…</span>
+            </div>
+          </div>
+
+          {/* Right branch — rollback */}
+          <div style={branchCol}>
+            <span style={branchHeader('#4caf50')}>✓ rollback</span>
+            <div style={nodeRow}>
+              <div style={dot('#4caf50', 10)} />
+              <span style={branchText}>Turn 4′ — fresh prompt</span>
+            </div>
+            <div style={vLine('#4caf50', 12)} />
+            <div style={nodeRow}>
+              <div style={dot('#4caf50', 10)} />
+              <span style={branchText}>Turn 5′ — correct path</span>
             </div>
           </div>
         </div>
