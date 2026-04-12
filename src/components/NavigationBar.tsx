@@ -55,13 +55,14 @@ export default function NavigationBar({
         ← Back
       </button>
 
-      <button
-        style={{ ...btn, opacity: canGoForward ? 1 : 0.25 }}
-        onClick={onForward}
-        disabled={!canGoForward}
-      >
-        Next →
-      </button>
+      {canGoForward && (
+        <button
+          style={btn}
+          onClick={onForward}
+        >
+          Next →
+        </button>
+      )}
     </div>
   )
 }
