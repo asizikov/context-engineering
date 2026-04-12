@@ -23,24 +23,33 @@ interface Layer {
 const DURATION = 500
 
 function getStyle(phase: Phase, direction: NavigationDirection): CSSProperties {
-  const base: CSSProperties = {
-    position: 'absolute',
-    inset: 0,
-    transition: `opacity ${DURATION}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${DURATION}ms cubic-bezier(0.4, 0, 0.2, 1)`,
-    willChange: 'opacity, transform',
-  }
+  const transition = `opacity ${DURATION}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${DURATION}ms cubic-bezier(0.4, 0, 0.2, 1)`
 
   if (phase === 'active') {
-    return { ...base, opacity: 1, transform: 'translateY(0)' }
+    return {
+      position: 'relative',
+      transition,
+      willChange: 'opacity, transform',
+      opacity: 1,
+      transform: 'translateY(0)',
+    }
   }
 
-  if (phase === 'enter') {
-    const offset = direction === 'back' ? '-40px' : '40px'
-    return { ...base, opacity: 0, transform: `translateY(${offset})` }
-  }
+  const offset = phase === 'enter'
+    ? (direction === 'back' ? '-40px' : '40px')
+    : (direction === 'back' ? '40px' : '-40px')
 
-  const exitOffset = direction === 'back' ? '40px' : '-40px'
-  return { ...base, opacity: 0, transform: `translateY(${exitOffset})` }
+  return {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    pointerEvents: 'none',
+    transition,
+    willChange: 'opacity, transform',
+    opacity: 0,
+    transform: `translateY(${offset})`,
+  }
 }
 
 export default function ViewTransition({
@@ -87,8 +96,12 @@ export default function ViewTransition({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewKey])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [viewKey])
+
   return (
-    <div style={{ position: 'relative', width: '100%', minHeight: '100dvh', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100%', overflowX: 'hidden' }}>
       {layers.map((layer) => (
         <div key={layer.key} style={getStyle(layer.phase, direction)}>
           {layer.content}
