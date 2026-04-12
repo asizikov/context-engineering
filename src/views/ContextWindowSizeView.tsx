@@ -90,7 +90,7 @@ const barLabel: CSSProperties = {
   transform: 'translateY(-50%)',
   fontSize: '11px',
   fontWeight: 600,
-  color: '#888',
+  color: '#111',
   pointerEvents: 'none',
 }
 
@@ -131,10 +131,10 @@ const INPUT_COLOR = '#4f8ef7'
 const OUTPUT_COLOR = '#f4a44a'
 
 const MODELS = [
-  { name: 'GPT-4o', totalK: 128, outputK: 16 },
-  { name: 'Claude Sonnet', totalK: 200, outputK: 64 },
-  { name: 'Gemini 1.5 Pro', totalK: 1000, outputK: 8 },
-  { name: 'Llama 3.1 70B', totalK: 128, outputK: 128 },
+  { name: 'GPT-5-mini', totalK: 400, outputK: 128 },
+  { name: 'GPT-5.4', totalK: 1050, outputK: 128 },
+  { name: 'Claude Opus 4.6', totalK: 1000, outputK: 128 },
+  { name: 'Gemini 3.1 Pro', totalK: 1048, outputK: 66 },
 ]
 
 const MAX_K = Math.max(...MODELS.map((m) => m.totalK))
