@@ -97,6 +97,15 @@ export default function LandingView({ onStart }: LandingViewProps) {
         Begin Tutorial
       </button>
 
+      <a
+        href="https://github.com/asizikov/context-engineering/issues"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ marginTop: 20, fontSize: '13px', color: '#999', textDecoration: 'none' }}
+      >
+        Suggestions? File an issue in the repository
+      </a>
+
       <span style={footer}>Scroll-free, one idea at a time</span>
     </div>
   )
