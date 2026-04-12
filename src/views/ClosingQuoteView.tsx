@@ -109,10 +109,11 @@ const shareBtn: CSSProperties = {
   textDecoration: 'none',
 }
 
+const CANONICAL_URL = 'https://blog.cloud-eng.nl/context-engineering/'
+const SHARE_URL = encodeURIComponent(CANONICAL_URL)
 const SHARE_TEXT = encodeURIComponent(
   "Just completed the Context Engineering interactive tutorial! Great resource for working with AI coding agents."
 )
-const SHARE_URL = encodeURIComponent(window.location.href)
 
 export default function ClosingQuoteView({ onStartAgain }: ClosingQuoteViewProps) {
   return (
