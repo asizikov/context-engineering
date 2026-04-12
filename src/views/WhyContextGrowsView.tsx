@@ -40,29 +40,6 @@ const body: CSSProperties = {
   fontWeight: 400,
 }
 
-const callout: CSSProperties = {
-  width: '100%',
-  maxWidth: 520,
-  padding: '20px 24px',
-  borderRadius: 12,
-  background: '#fff8f0',
-  border: '1.5px solid #f0d8b0',
-  marginBottom: 36,
-}
-
-const calloutTitle: CSSProperties = {
-  fontSize: '14px',
-  fontWeight: 700,
-  color: '#111',
-  marginBottom: 6,
-}
-
-const calloutBody: CSSProperties = {
-  fontSize: '14px',
-  lineHeight: 1.65,
-  color: '#666',
-}
-
 const diagram: CSSProperties = {
   width: '100%',
   maxWidth: 520,
@@ -133,16 +110,6 @@ export default function WhyContextGrowsView() {
         tools, and every previous message — as input.
       </p>
 
-      <div style={callout}>
-        <div style={calloutTitle}>⚠️ Models don't remember</div>
-        <div style={calloutBody}>
-          Each API call sends the full conversation log from scratch.
-          The agent's response, your reply, tool calls and results —
-          all of it gets appended and resent on the next turn. The
-          context window only grows; it never shrinks on its own.
-        </div>
-      </div>
-
       <div style={diagram}>
         {LAYERS.map((layer) => (
           <div key={layer.label} style={barRow}>
@@ -153,6 +120,16 @@ export default function WhyContextGrowsView() {
         <p style={caption}>
           After a few loop iterations, conversation history and<br />
           tool results dominate the context window.
+        </p>
+      </div>
+
+      <div>
+        <p style={body}>⚠️ Models don't remember</p>
+        <p style={body}>
+          Each API call sends the full conversation log from scratch.
+          The agent's response, your reply, tool calls and results —
+          all of it gets appended and resent on the next turn. The
+          context window only grows; it never shrinks on its own.
         </p>
       </div>
     </div>
