@@ -340,15 +340,15 @@ export default function ContextPrimitivesView() {
             ) : (
               <div style={{ animation: 'fadeIn 0.22s ease-out' }}>
                 <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }`}</style>
-                <div style={{ fontSize: '18px', fontWeight: 700, color: selectedBlock.fg, marginBottom: 20 }}>
+                <div style={{ fontSize: '18px', fontWeight: 700, marginBottom: 20 }}>
                   {selectedBlock.label}
                 </div>
                 {selectedBlock.description.map((section) => (
                   <div key={section.heading} style={{ marginBottom: 20 }}>
-                    <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: selectedBlock.fg, opacity: 0.6, marginBottom: 5 }}>
+                    <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', opacity: 0.6, marginBottom: 5 }}>
                       {section.heading}
                     </div>
-                    <p style={{ fontSize: '14px', lineHeight: 1.65, color: selectedBlock.fg, margin: 0, opacity: 0.9 }}>
+                    <p style={{ fontSize: '14px', lineHeight: 1.65, margin: 0, opacity: 0.9 }}>
                       {section.text}
                     </p>
                   </div>
