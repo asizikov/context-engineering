@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react'
+import type { CSSProperties } from 'react'
 
 const page: CSSProperties = {
   display: 'flex',
@@ -66,19 +66,16 @@ const arrow: CSSProperties = {
   color: '#bbb',
 }
 
-const pill = (active: boolean): CSSProperties => ({
+const pillStyle: CSSProperties = {
   padding: '12px 24px',
   borderRadius: 50,
   fontSize: '14px',
   fontWeight: 600,
   letterSpacing: '0.03em',
-  border: active ? '2px solid #111' : '2px solid #ddd',
-  background: active ? '#111' : '#fff',
-  color: active ? '#fff' : '#888',
-  cursor: 'pointer',
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  userSelect: 'none',
-})
+  border: '2px solid #111',
+  background: '#111',
+  color: '#fff',
+}
 
 const contextWindow: CSSProperties = {
   border: '2px dashed #ccc',
@@ -97,18 +94,17 @@ const contextLabel: CSSProperties = {
   marginBottom: 12,
 }
 
-const contextItem = (visible: boolean): CSSProperties => ({
+const contextItemStyle: CSSProperties = {
   display: 'inline-block',
   padding: '6px 14px',
   margin: '4px',
   borderRadius: 6,
   fontSize: '13px',
   fontWeight: 500,
-  background: visible ? '#f0f0f0' : 'transparent',
-  color: visible ? '#333' : 'transparent',
-  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-  border: visible ? '1px solid #e0e0e0' : '1px solid transparent',
-})
+  background: '#f0f0f0',
+  color: '#333',
+  border: '1px solid #e0e0e0',
+}
 
 const highlight: CSSProperties = {
   fontSize: 'clamp(15px, 1.8vw, 17px)',
@@ -129,18 +125,6 @@ const CONTEXT_ITEMS = [
 ]
 
 export default function WhatIsContextView() {
-  const [activeItems, setActiveItems] = useState<Set<number>>(new Set([0, 1]))
-  const [showAll, setShowAll] = useState(false)
-
-  const toggleAll = () => {
-    if (showAll) {
-      setActiveItems(new Set([0, 1]))
-    } else {
-      setActiveItems(new Set(CONTEXT_ITEMS.map((_, i) => i)))
-    }
-    setShowAll(!showAll)
-  }
-
   return (
     <div style={page}>
       <span style={chapterLabel}>Chapter 01</span>
@@ -154,53 +138,23 @@ export default function WhatIsContextView() {
         hand.
       </p>
 
-      {/* Interactive diagram */}
       <div style={diagramContainer}>
         <div style={diagramBox}>
           <div style={row}>
-            <span style={pill(true)}>You</span>
+            <span style={pillStyle}>You</span>
             <span style={arrow}>→</span>
-            <span style={pill(true)}>Context</span>
+            <span style={pillStyle}>Context</span>
             <span style={arrow}>→</span>
-            <span style={pill(true)}>Agent</span>
+            <span style={pillStyle}>Agent</span>
           </div>
 
           <div style={contextWindow}>
             <div style={contextLabel}>Context Window</div>
-            {CONTEXT_ITEMS.map((item, i) => (
-              <span
-                key={item}
-                style={contextItem(activeItems.has(i))}
-                onClick={() => {
-                  setActiveItems((prev) => {
-                    const next = new Set(prev)
-                    if (next.has(i)) next.delete(i)
-                    else next.add(i)
-                    return next
-                  })
-                }}
-              >
+            {CONTEXT_ITEMS.map((item) => (
+              <span key={item} style={contextItemStyle}>
                 {item}
               </span>
             ))}
-            <div style={{ marginTop: 12 }}>
-              <button
-                onClick={toggleAll}
-                style={{
-                  background: 'none',
-                  border: '1px solid #ddd',
-                  borderRadius: 20,
-                  padding: '6px 16px',
-                  fontSize: '12px',
-                  fontFamily: 'inherit',
-                  color: '#888',
-                  cursor: 'pointer',
-                  transition: 'color 0.2s',
-                }}
-              >
-                {showAll ? 'Reset' : 'Show all'}
-              </button>
-            </div>
           </div>
         </div>
       </div>
