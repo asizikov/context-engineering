@@ -101,7 +101,7 @@ export default function ViewTransition({
   }, [viewKey])
 
   return (
-    <div style={{ position: 'relative', width: '100%', overflowX: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100%', minHeight: '100dvh', overflowX: 'hidden' }}>
       {layers.map((layer) => (
         <div key={layer.key} style={getStyle(layer.phase, direction)}>
           {layer.content}
