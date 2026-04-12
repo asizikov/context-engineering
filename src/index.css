@@ -21,6 +21,12 @@ body,
   overflow-x: hidden;
 }
 
+@media (min-width: 769px) {
+  #root {
+    padding-left: 200px;
+  }
+}
+
 ::selection {
   background: #111;
   color: #fff;
