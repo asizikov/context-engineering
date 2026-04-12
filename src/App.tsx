@@ -5,6 +5,7 @@ import NavigationBar from './components/NavigationBar'
 import Sidebar, { type Chapter } from './components/Sidebar'
 import LandingView from './views/LandingView'
 import WhatIsContextView from './views/WhatIsContextView'
+import ContextWindowSizeView from './views/ContextWindowSizeView'
 import AgentLoopView from './views/AgentLoopView'
 import ToolCallsView from './views/ToolCallsView'
 import ContextPrimitivesView from './views/ContextPrimitivesView'
@@ -21,38 +22,42 @@ import MemoryView from './views/MemoryView'
 import CostOptimizationView from './views/CostOptimizationView'
 import AdditionalToolsView from './views/AdditionalToolsView'
 import SecurityGuardrailsView from './views/SecurityGuardrailsView'
+import ObservabilityView from './views/ObservabilityView'
 import CorrectingMistakesView from './views/CorrectingMistakesView'
 import ClosingQuoteView from './views/ClosingQuoteView'
 
 const CHAPTERS: Chapter[] = [
   { index: 1, title: 'What is Context' },
-  { index: 2, title: 'The Agent Loop' },
-  { index: 3, title: 'Tool Calls' },
-  { index: 4, title: 'Context Primitives' },
-  { index: 5, title: 'Agent Loop in Action' },
-  { index: 6, title: 'Why Context Grows' },
-  { index: 7, title: 'Context Rot' },
-  { index: 8, title: 'Compaction' },
-  { index: 9, title: 'Correcting Mistakes' },
-  { index: 10, title: 'The Goal' },
-  { index: 11, title: 'Harness Techniques' },
-  { index: 12, title: 'Your Techniques' },
-  { index: 13, title: 'AGENTS.md' },
-  { index: 14, title: 'Iterate Often' },
-  { index: 15, title: 'Memory' },
-  { index: 16, title: 'Cost Optimization' },
-  { index: 17, title: 'Additional Tools' },
-  { index: 18, title: 'Security Guardrails' },
-  { index: 19, title: 'Closing' },
+  { index: 2, title: 'Context Window Size' },
+  { index: 3, title: 'The Agent Loop' },
+  { index: 4, title: 'Tool Calls' },
+  { index: 5, title: 'Context Primitives' },
+  { index: 6, title: 'Agent Loop in Action' },
+  { index: 7, title: 'Why Context Grows' },
+  { index: 8, title: 'Context Rot' },
+  { index: 9, title: 'Compaction' },
+  { index: 10, title: 'Correcting Mistakes' },
+  { index: 11, title: 'The Goal' },
+  { index: 12, title: 'Harness Techniques' },
+  { index: 13, title: 'Your Techniques' },
+  { index: 14, title: 'AGENTS.md' },
+  { index: 15, title: 'Iterate Often' },
+  { index: 16, title: 'Memory' },
+  { index: 17, title: 'Cost Optimization' },
+  { index: 18, title: 'Additional Tools' },
+  { index: 19, title: 'Security Guardrails' },
+  { index: 20, title: 'Observability' },
+  { index: 21, title: 'Closing' },
 ]
 
-const TOTAL_VIEWS = 20
+const TOTAL_VIEWS = 22
 
 function useViews(goForward: () => void, goToStart: () => void): ReactNode[] {
   return useMemo(
     () => [
       <LandingView onStart={goForward} />,
       <WhatIsContextView />,
+      <ContextWindowSizeView />,
       <AgentLoopView />,
       <ToolCallsView />,
       <ContextPrimitivesView />,
@@ -70,6 +75,7 @@ function useViews(goForward: () => void, goToStart: () => void): ReactNode[] {
       <CostOptimizationView />,
       <AdditionalToolsView />,
       <SecurityGuardrailsView />,
+      <ObservabilityView />,
       <ClosingQuoteView onStartAgain={goToStart} />,
     ],
     [goForward, goToStart],
