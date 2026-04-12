@@ -24,6 +24,7 @@ body,
 @media (min-width: 1025px) {
   #root {
     padding-left: 200px;
+    padding-right: 200px;
   }
 }
 
