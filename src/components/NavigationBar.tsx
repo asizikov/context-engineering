@@ -6,7 +6,6 @@ interface NavigationBarProps {
   onBack: () => void
   onForward: () => void
   currentIndex: number
-  totalViews: number
 }
 
 const bar: CSSProperties = {
@@ -37,28 +36,12 @@ const btn: CSSProperties = {
   transition: 'opacity 0.2s',
 }
 
-const progress: CSSProperties = {
-  pointerEvents: 'auto',
-  display: 'flex',
-  gap: '6px',
-  alignItems: 'center',
-}
-
-const dot = (active: boolean): CSSProperties => ({
-  width: active ? 20 : 6,
-  height: 6,
-  borderRadius: 3,
-  background: active ? '#111' : '#ccc',
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-})
-
 export default function NavigationBar({
   canGoBack,
   canGoForward,
   onBack,
   onForward,
   currentIndex,
-  totalViews,
 }: NavigationBarProps) {
   if (currentIndex === 0) return null
 
@@ -71,12 +54,6 @@ export default function NavigationBar({
       >
         ← Back
       </button>
-
-      <div style={progress}>
-        {Array.from({ length: totalViews }, (_, i) => (
-          <div key={i} style={dot(i === currentIndex)} />
-        ))}
-      </div>
 
       <button
         style={{ ...btn, opacity: canGoForward ? 1 : 0.25 }}
