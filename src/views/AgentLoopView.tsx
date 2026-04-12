@@ -105,7 +105,7 @@ const STEPS = [
 export default function AgentLoopView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 02</span>
+      <span style={chapterLabel}>Chapter 03</span>
       <h2 style={heading}>The Agent Loop</h2>
 
       <p style={body}>
