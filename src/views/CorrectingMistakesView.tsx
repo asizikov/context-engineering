@@ -40,29 +40,6 @@ const body: CSSProperties = {
   fontWeight: 400,
 }
 
-const callout: CSSProperties = {
-  width: '100%',
-  maxWidth: 520,
-  padding: '20px 24px',
-  borderRadius: 12,
-  background: '#fdf2f2',
-  border: '1.5px solid #e8b4b4',
-  marginBottom: 40,
-}
-
-const calloutTitle: CSSProperties = {
-  fontSize: '14px',
-  fontWeight: 700,
-  color: '#111',
-  marginBottom: 6,
-}
-
-const calloutBody: CSSProperties = {
-  fontSize: '14px',
-  lineHeight: 1.65,
-  color: '#666',
-}
-
 /* ── diagram styles ── */
 
 const diagram: CSSProperties = {
@@ -160,18 +137,6 @@ export default function CorrectingMistakesView() {
         Every subsequent response is now influenced by that mistake.
       </p>
 
-      <div style={callout}>
-        <div style={calloutTitle}>🚫 Don't steer — roll back</div>
-        <div style={calloutBody}>
-          Telling the agent to try again doesn't erase what it already saw.
-          The incorrect reasoning, failed tool calls, and bad assumptions
-          remain in the context window, blurring focus and biasing future
-          output. Instead, use the <strong>checkpoint system</strong> your
-          harness provides — step back to a known‑good state and branch off
-          with a fresh prompt.
-        </div>
-      </div>
-
       <p style={body}>
         Modern harnesses create <strong>checkpoints</strong> at key moments.
         Rolling back to one gives the model a clean context — no ghosts of
@@ -259,6 +224,16 @@ export default function CorrectingMistakesView() {
           the mistake never enters the new context.
         </p>
       </div>
+
+      <p style={body}>🚫 Don't steer — roll back</p>
+      <p style={body}>
+        Telling the agent to try again doesn't erase what it already saw.
+        The incorrect reasoning, failed tool calls, and bad assumptions
+        remain in the context window, blurring focus and biasing future
+        output. Instead, use the <strong>checkpoint system</strong> your
+        harness provides — step back to a known‑good state and branch off
+        with a fresh prompt.
+      </p>
     </div>
   )
 }
