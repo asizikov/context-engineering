@@ -23,6 +23,7 @@ body,
 
 @media (min-width: 1025px) {
   #root {
+    width: 100%;
     padding-left: 200px;
     padding-right: 200px;
   }
