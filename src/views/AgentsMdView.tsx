@@ -108,7 +108,7 @@ const principleText: CSSProperties = {
 export default function AgentsMdView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 12</span>
+      <span style={chapterLabel}>Chapter 13</span>
       <h2 style={heading}>AGENTS.md</h2>
 
       <p style={body}>

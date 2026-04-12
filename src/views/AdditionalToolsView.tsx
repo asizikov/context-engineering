@@ -123,7 +123,7 @@ const TOOL_GROUPS: ToolGroupProps[] = [
 export default function AdditionalToolsView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 16</span>
+      <span style={chapterLabel}>Chapter 17</span>
       <h2 style={heading}>Additional Tools</h2>
 
       <p style={body}>

@@ -21,6 +21,7 @@ import MemoryView from './views/MemoryView'
 import CostOptimizationView from './views/CostOptimizationView'
 import AdditionalToolsView from './views/AdditionalToolsView'
 import SecurityGuardrailsView from './views/SecurityGuardrailsView'
+import CorrectingMistakesView from './views/CorrectingMistakesView'
 
 const CHAPTERS: Chapter[] = [
   { index: 1, title: 'What is Context' },
@@ -31,18 +32,19 @@ const CHAPTERS: Chapter[] = [
   { index: 6, title: 'Why Context Grows' },
   { index: 7, title: 'Context Rot' },
   { index: 8, title: 'Compaction' },
-  { index: 9, title: 'The Goal' },
-  { index: 10, title: 'Harness Techniques' },
-  { index: 11, title: 'Your Techniques' },
-  { index: 12, title: 'AGENTS.md' },
-  { index: 13, title: 'Iterate Often' },
-  { index: 14, title: 'Memory' },
-  { index: 15, title: 'Cost Optimization' },
-  { index: 16, title: 'Additional Tools' },
-  { index: 17, title: 'Security Guardrails' },
+  { index: 9, title: 'Correcting Mistakes' },
+  { index: 10, title: 'The Goal' },
+  { index: 11, title: 'Harness Techniques' },
+  { index: 12, title: 'Your Techniques' },
+  { index: 13, title: 'AGENTS.md' },
+  { index: 14, title: 'Iterate Often' },
+  { index: 15, title: 'Memory' },
+  { index: 16, title: 'Cost Optimization' },
+  { index: 17, title: 'Additional Tools' },
+  { index: 18, title: 'Security Guardrails' },
 ]
 
-const TOTAL_VIEWS = 18
+const TOTAL_VIEWS = 19
 
 function useViews(goForward: () => void): ReactNode[] {
   return useMemo(
@@ -56,6 +58,7 @@ function useViews(goForward: () => void): ReactNode[] {
       <WhyContextGrowsView />,
       <ContextRotView />,
       <CompactionView />,
+      <CorrectingMistakesView />,
       <TheGoalView />,
       <HarnessTechniquesView />,
       <UserTechniquesView />,

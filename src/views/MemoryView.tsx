@@ -129,7 +129,7 @@ const footer: CSSProperties = {
 export default function MemoryView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 14</span>
+      <span style={chapterLabel}>Chapter 15</span>
       <h2 style={heading}>Memory</h2>
 
       <p style={body}>

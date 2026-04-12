@@ -120,7 +120,7 @@ const pointerLabel: CSSProperties = {
 export default function TheGoalView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 09</span>
+      <span style={chapterLabel}>Chapter 10</span>
       <h2 style={heading}>The Goal</h2>
 
       <div style={quoteBlock}>

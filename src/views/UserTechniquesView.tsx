@@ -116,7 +116,7 @@ const TIPS: TipProps[] = [
 export default function UserTechniquesView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 11</span>
+      <span style={chapterLabel}>Chapter 12</span>
       <h2 style={heading}>Your Techniques</h2>
       <p style={subtitle}>What you can do as the human in the loop</p>
 

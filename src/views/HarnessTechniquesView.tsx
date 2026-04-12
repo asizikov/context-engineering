@@ -112,7 +112,7 @@ const TECHNIQUES: TechniqueCardProps[] = [
 export default function HarnessTechniquesView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 10</span>
+      <span style={chapterLabel}>Chapter 11</span>
       <h2 style={heading}>Harness Techniques</h2>
       <p style={subtitle}>What the agent runtime does for you</p>
 

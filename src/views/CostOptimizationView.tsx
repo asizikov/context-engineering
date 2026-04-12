@@ -126,7 +126,7 @@ const footer: CSSProperties = {
 export default function CostOptimizationView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 15</span>
+      <span style={chapterLabel}>Chapter 16</span>
       <h2 style={heading}>Cost Optimization</h2>
 
       <p style={body}>
