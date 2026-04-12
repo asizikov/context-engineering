@@ -17,8 +17,11 @@ import UserTechniquesView from './views/UserTechniquesView'
 import AgentsMdView from './views/AgentsMdView'
 import IterateView from './views/IterateView'
 import MemoryView from './views/MemoryView'
+import CostOptimizationView from './views/CostOptimizationView'
+import AdditionalToolsView from './views/AdditionalToolsView'
+import SecurityGuardrailsView from './views/SecurityGuardrailsView'
 
-const TOTAL_VIEWS = 15
+const TOTAL_VIEWS = 18
 
 function useViews(goForward: () => void): ReactNode[] {
   return useMemo(
@@ -38,6 +41,9 @@ function useViews(goForward: () => void): ReactNode[] {
       <AgentsMdView />,
       <IterateView />,
       <MemoryView />,
+      <CostOptimizationView />,
+      <AdditionalToolsView />,
+      <SecurityGuardrailsView />,
     ],
     [goForward],
   )
