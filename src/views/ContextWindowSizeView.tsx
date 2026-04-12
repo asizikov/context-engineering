@@ -69,7 +69,7 @@ const modelName: CSSProperties = {
   fontSize: '13px',
   fontWeight: 600,
   color: '#333',
-  width: 160,
+  width: 110,
   flexShrink: 0,
   textAlign: 'right',
 }
