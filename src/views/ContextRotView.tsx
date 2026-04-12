@@ -43,22 +43,17 @@ const body: CSSProperties = {
 const diagram: CSSProperties = {
   width: '100%',
   maxWidth: 520,
-  border: '1.5px solid #e0e0e0',
-  borderRadius: 16,
-  padding: '32px',
-  background: '#fafafa',
   display: 'flex',
   flexDirection: 'column',
-  gap: 20,
+  gap: 12,
 }
 
-const problemCard = (color: string): CSSProperties => ({
+const problemCard: CSSProperties = {
   padding: '20px 24px',
   borderRadius: 12,
-  border: `2px solid ${color}`,
-  borderLeft: `6px solid ${color}`,
-  background: '#fff',
-})
+  border: '1.5px solid #e0e0e0',
+  background: '#fafafa',
+}
 
 const problemTitle: CSSProperties = {
   fontSize: '16px',
@@ -77,17 +72,14 @@ const PROBLEMS = [
   {
     title: 'Lost in the Middle',
     desc: 'Models pay most attention to the beginning and end of context. Information buried in the middle gets overlooked — a blind spot that grows with context length.',
-    color: '#e74c3c',
   },
   {
     title: 'Recency Bias',
     desc: 'Instructions and information near the end of the prompt carry outsized influence. Earlier context fades, even if it\'s more important.',
-    color: '#e67e22',
   },
   {
     title: 'Noise Accumulation',
     desc: 'Each loop iteration adds tool results and reasoning traces. Irrelevant details pile up and dilute the signal, making it harder for the model to find what matters.',
-    color: '#f1c40f',
   },
 ]
 
@@ -105,7 +97,7 @@ export default function ContextRotView() {
 
       <div style={diagram}>
         {PROBLEMS.map((p) => (
-          <div key={p.title} style={problemCard(p.color)}>
+          <div key={p.title} style={problemCard}>
             <div style={problemTitle}>{p.title}</div>
             <div style={problemDesc}>{p.desc}</div>
           </div>
