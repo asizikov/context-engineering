@@ -125,7 +125,7 @@ export default function TheGoalView() {
 
       <div style={quoteBlock}>
         <p style={quoteText}>
-          "Provide as little context as possible, but as much as needed."
+          "Provide as little context as possible, but as much as required."
         </p>
       </div>
 
