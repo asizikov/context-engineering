@@ -141,7 +141,7 @@ export default function CompactionView() {
 
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 08</span>
+      <span style={chapterLabel}>Chapter 09</span>
       <h2 style={heading}>Compaction</h2>
 
       <p style={body}>

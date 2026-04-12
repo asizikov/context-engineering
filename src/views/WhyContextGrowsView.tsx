@@ -100,7 +100,7 @@ const LAYERS = [
 export default function WhyContextGrowsView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 06</span>
+      <span style={chapterLabel}>Chapter 07</span>
       <h2 style={heading}>Why Context Grows</h2>
 
       <p style={body}>

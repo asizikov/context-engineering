@@ -94,7 +94,7 @@ const PROBLEMS = [
 export default function ContextRotView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 07</span>
+      <span style={chapterLabel}>Chapter 08</span>
       <h2 style={heading}>Context Rot</h2>
 
       <p style={body}>

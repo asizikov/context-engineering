@@ -127,7 +127,7 @@ const caption: CSSProperties = {
 export default function CorrectingMistakesView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 09</span>
+      <span style={chapterLabel}>Chapter 10</span>
       <h2 style={heading}>Correcting Agent Mistakes</h2>
 
       <p style={body}>
