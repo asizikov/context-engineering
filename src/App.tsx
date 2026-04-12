@@ -2,6 +2,7 @@ import { useMemo, type ReactNode } from 'react'
 import { useNavigation } from './hooks/useNavigation'
 import ViewTransition from './components/ViewTransition'
 import NavigationBar from './components/NavigationBar'
+import Sidebar, { type Chapter } from './components/Sidebar'
 import LandingView from './views/LandingView'
 import WhatIsContextView from './views/WhatIsContextView'
 import AgentLoopView from './views/AgentLoopView'
@@ -20,6 +21,26 @@ import MemoryView from './views/MemoryView'
 import CostOptimizationView from './views/CostOptimizationView'
 import AdditionalToolsView from './views/AdditionalToolsView'
 import SecurityGuardrailsView from './views/SecurityGuardrailsView'
+
+const CHAPTERS: Chapter[] = [
+  { index: 1, title: 'What is Context' },
+  { index: 2, title: 'The Agent Loop' },
+  { index: 3, title: 'Tool Calls' },
+  { index: 4, title: 'Context Primitives' },
+  { index: 5, title: 'Why Context Grows' },
+  { index: 6, title: 'Agent Loop in Action' },
+  { index: 7, title: 'Context Rot' },
+  { index: 8, title: 'Compaction' },
+  { index: 9, title: 'The Goal' },
+  { index: 10, title: 'Harness Techniques' },
+  { index: 11, title: 'Your Techniques' },
+  { index: 12, title: 'AGENTS.md' },
+  { index: 13, title: 'Iterate Often' },
+  { index: 14, title: 'Memory' },
+  { index: 15, title: 'Cost Optimization' },
+  { index: 16, title: 'Additional Tools' },
+  { index: 17, title: 'Security Guardrails' },
+]
 
 const TOTAL_VIEWS = 18
 
@@ -55,6 +76,13 @@ export default function App() {
 
   return (
     <>
+      <Sidebar
+        chapters={CHAPTERS}
+        currentIndex={nav.currentIndex}
+        maxVisited={nav.maxVisited}
+        onNavigate={nav.goTo}
+      />
+
       <ViewTransition viewKey={nav.currentIndex} direction={nav.direction}>
         {views[nav.currentIndex]}
       </ViewTransition>
@@ -65,7 +93,6 @@ export default function App() {
         onBack={nav.goBack}
         onForward={nav.goForward}
         currentIndex={nav.currentIndex}
-        totalViews={TOTAL_VIEWS}
       />
     </>
   )
