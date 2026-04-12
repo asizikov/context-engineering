@@ -47,35 +47,49 @@ const body: CSSProperties = {
   fontWeight: 400,
 }
 
-const grid: CSSProperties = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-  gap: 14,
+const list: CSSProperties = {
   width: '100%',
-  maxWidth: 560,
+  maxWidth: 520,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 14,
 }
 
 interface TechniqueCardProps {
-  icon: string
+  number: string
   title: string
   description: string
 }
 
-function TechniqueCard({ icon, title, description }: TechniqueCardProps) {
+function TechniqueCard({ number, title, description }: TechniqueCardProps) {
   return (
     <div style={{
+      display: 'flex',
+      gap: 18,
+      alignItems: 'flex-start',
+      padding: '20px 24px',
       border: '1.5px solid #e0e0e0',
       borderRadius: 14,
-      padding: '22px 20px',
       background: '#fafafa',
-      textAlign: 'left',
     }}>
-      <div style={{ fontSize: 22, marginBottom: 8 }}>{icon}</div>
-      <div style={{ fontSize: '14px', fontWeight: 700, color: '#111', marginBottom: 5 }}>
-        {title}
-      </div>
-      <div style={{ fontSize: '13px', lineHeight: 1.6, color: '#777' }}>
-        {description}
+      <span style={{
+        fontSize: '24px',
+        fontWeight: 800,
+        color: '#ddd',
+        lineHeight: 1,
+        flexShrink: 0,
+        width: 32,
+        textAlign: 'center',
+      }}>
+        {number}
+      </span>
+      <div>
+        <div style={{ fontSize: '15px', fontWeight: 700, color: '#111', marginBottom: 4 }}>
+          {title}
+        </div>
+        <div style={{ fontSize: '13px', lineHeight: 1.6, color: '#777' }}>
+          {description}
+        </div>
       </div>
     </div>
   )
@@ -83,27 +97,27 @@ function TechniqueCard({ icon, title, description }: TechniqueCardProps) {
 
 const TECHNIQUES: TechniqueCardProps[] = [
   {
-    icon: '🗜️',
+    number: '01',
     title: 'Auto-Compaction',
     description: 'The harness summarizes earlier turns automatically when the context window fills up, preserving key facts.',
   },
   {
-    icon: '🔍',
+    number: '02',
     title: 'Discovery Tools',
     description: 'grep, glob, file search — the agent explores your codebase on demand instead of loading everything upfront.',
   },
   {
-    icon: '🤖',
+    number: '03',
     title: 'Sub-Agentic Calls',
     description: 'Spawning lightweight sub-agents for focused tasks keeps the main context clean and scoped.',
   },
   {
-    icon: '📦',
+    number: '04',
     title: 'Progressive Loading',
     description: 'Context is loaded incrementally — files, docs, and data are fetched only when the agent actually needs them.',
   },
   {
-    icon: '📝',
+    number: '05',
     title: 'Planning',
     description: 'Writing plans to files or databases externalizes reasoning, freeing tokens while preserving structure.',
   },
@@ -122,7 +136,7 @@ export default function HarnessTechniquesView() {
         tasks.
       </p>
 
-      <div style={grid}>
+      <div style={list}>
         {TECHNIQUES.map((t) => (
           <TechniqueCard key={t.title} {...t} />
         ))}
