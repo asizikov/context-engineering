@@ -247,7 +247,7 @@ export default function InteractiveAgentLoopView() {
     <div style={page}>
       <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }`}</style>
 
-      <span style={chapterLabel}>Chapter 06</span>
+      <span style={chapterLabel}>Chapter 05</span>
       <h2 style={heading}>Agent Loop in Action</h2>
       <p style={subtitle}>
         Watch an agent that <strong>can't do math</strong> evaluate{' '}

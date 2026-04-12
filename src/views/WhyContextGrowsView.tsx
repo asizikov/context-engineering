@@ -36,8 +36,31 @@ const body: CSSProperties = {
   color: '#444',
   maxWidth: 600,
   textAlign: 'center',
-  margin: '0 0 48px',
+  margin: '0 0 24px',
   fontWeight: 400,
+}
+
+const callout: CSSProperties = {
+  width: '100%',
+  maxWidth: 520,
+  padding: '20px 24px',
+  borderRadius: 12,
+  background: '#fff8f0',
+  border: '1.5px solid #f0d8b0',
+  marginBottom: 36,
+}
+
+const calloutTitle: CSSProperties = {
+  fontSize: '14px',
+  fontWeight: 700,
+  color: '#111',
+  marginBottom: 6,
+}
+
+const calloutBody: CSSProperties = {
+  fontSize: '14px',
+  lineHeight: 1.65,
+  color: '#666',
 }
 
 const diagram: CSSProperties = {
@@ -100,14 +123,25 @@ const LAYERS = [
 export default function WhyContextGrowsView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 05</span>
+      <span style={chapterLabel}>Chapter 06</span>
       <h2 style={heading}>Why Context Grows</h2>
 
       <p style={body}>
-        Every loop iteration <strong>adds</strong> to the context — tool calls,
-        results, reasoning traces. A context window that started small can
-        quickly fill up, pushing against token limits.
+        Large language models are <strong>stateless</strong>. They have no
+        memory between calls. Every time the agent takes a turn, the harness
+        must resubmit the <strong>entire session</strong> — system prompt,
+        tools, and every previous message — as input.
       </p>
+
+      <div style={callout}>
+        <div style={calloutTitle}>⚠️ Models don't remember</div>
+        <div style={calloutBody}>
+          Each API call sends the full conversation log from scratch.
+          The agent's response, your reply, tool calls and results —
+          all of it gets appended and resent on the next turn. The
+          context window only grows; it never shrinks on its own.
+        </div>
+      </div>
 
       <div style={diagram}>
         {LAYERS.map((layer) => (
@@ -117,8 +151,8 @@ export default function WhyContextGrowsView() {
           </div>
         ))}
         <p style={caption}>
-          Conversation history and tool results dominate<br />
-          the window after just a few loop iterations.
+          After a few loop iterations, conversation history and<br />
+          tool results dominate the context window.
         </p>
       </div>
     </div>
