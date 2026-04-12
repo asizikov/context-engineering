@@ -11,8 +11,14 @@ import WhyContextGrowsView from './views/WhyContextGrowsView'
 import InteractiveAgentLoopView from './views/InteractiveAgentLoopView'
 import ContextRotView from './views/ContextRotView'
 import CompactionView from './views/CompactionView'
+import TheGoalView from './views/TheGoalView'
+import HarnessTechniquesView from './views/HarnessTechniquesView'
+import UserTechniquesView from './views/UserTechniquesView'
+import AgentsMdView from './views/AgentsMdView'
+import IterateView from './views/IterateView'
+import MemoryView from './views/MemoryView'
 
-const TOTAL_VIEWS = 9
+const TOTAL_VIEWS = 15
 
 function useViews(goForward: () => void): ReactNode[] {
   return useMemo(
@@ -26,6 +32,12 @@ function useViews(goForward: () => void): ReactNode[] {
       <InteractiveAgentLoopView />,
       <ContextRotView />,
       <CompactionView />,
+      <TheGoalView />,
+      <HarnessTechniquesView />,
+      <UserTechniquesView />,
+      <AgentsMdView />,
+      <IterateView />,
+      <MemoryView />,
     ],
     [goForward],
   )
