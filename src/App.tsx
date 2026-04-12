@@ -1,4 +1,4 @@
-import { useMemo, type ReactNode } from 'react'
+import { useCallback, useMemo, type ReactNode } from 'react'
 import { useNavigation } from './hooks/useNavigation'
 import ViewTransition from './components/ViewTransition'
 import NavigationBar from './components/NavigationBar'
@@ -22,6 +22,7 @@ import CostOptimizationView from './views/CostOptimizationView'
 import AdditionalToolsView from './views/AdditionalToolsView'
 import SecurityGuardrailsView from './views/SecurityGuardrailsView'
 import CorrectingMistakesView from './views/CorrectingMistakesView'
+import ClosingQuoteView from './views/ClosingQuoteView'
 
 const CHAPTERS: Chapter[] = [
   { index: 1, title: 'What is Context' },
@@ -42,11 +43,12 @@ const CHAPTERS: Chapter[] = [
   { index: 16, title: 'Cost Optimization' },
   { index: 17, title: 'Additional Tools' },
   { index: 18, title: 'Security Guardrails' },
+  { index: 19, title: 'Closing' },
 ]
 
-const TOTAL_VIEWS = 19
+const TOTAL_VIEWS = 20
 
-function useViews(goForward: () => void): ReactNode[] {
+function useViews(goForward: () => void, goToStart: () => void): ReactNode[] {
   return useMemo(
     () => [
       <LandingView onStart={goForward} />,
@@ -68,14 +70,16 @@ function useViews(goForward: () => void): ReactNode[] {
       <CostOptimizationView />,
       <AdditionalToolsView />,
       <SecurityGuardrailsView />,
+      <ClosingQuoteView onStartAgain={goToStart} />,
     ],
-    [goForward],
+    [goForward, goToStart],
   )
 }
 
 export default function App() {
   const nav = useNavigation(TOTAL_VIEWS)
-  const views = useViews(nav.goForward)
+  const goToStart = useCallback(() => nav.goTo(0), [nav.goTo])
+  const views = useViews(nav.goForward, goToStart)
 
   return (
     <>
