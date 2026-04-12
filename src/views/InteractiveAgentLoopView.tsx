@@ -350,6 +350,12 @@ export default function InteractiveAgentLoopView() {
           </div>
         </div>
       </div>
+
+      {step === 1 && (
+        <p style={{ marginTop: 16, fontSize: '13px', color: '#999', textAlign: 'center' }}>
+          Click <strong style={{ color: '#111' }}>Next Step →</strong> to see how each interaction is reflected in the context window.
+        </p>
+      )}
     </div>
   )
 }
