@@ -145,7 +145,7 @@ export default function WhatIsContextView() {
             <span style={arrow}>→</span>
             <span style={pillStyle}>Context</span>
             <span style={arrow}>→</span>
-            <span style={pillStyle}>Agent</span>
+            <span style={pillStyle}>LLM</span>
           </div>
 
           <div style={contextWindow}>
