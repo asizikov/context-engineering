@@ -128,7 +128,7 @@ const STEPS = [
 export default function IterateView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 15</span>
+      <span style={chapterLabel}>Chapter 18</span>
       <h2 style={heading}>Iterate Often</h2>
 
       <p style={body}>

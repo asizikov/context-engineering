@@ -15,12 +15,16 @@ import ContextRotView from './views/ContextRotView'
 import CompactionView from './views/CompactionView'
 import TheGoalView from './views/TheGoalView'
 import HarnessTechniquesView from './views/HarnessTechniquesView'
+import SubAgentsView from './views/SubAgentsView'
+import ResearchWithoutSubagentsView from './views/ResearchWithoutSubagentsView'
+import ResearchWithSubagentsView from './views/ResearchWithSubagentsView'
 import UserTechniquesView from './views/UserTechniquesView'
 import AgentsMdView from './views/AgentsMdView'
 import IterateView from './views/IterateView'
 import MemoryView from './views/MemoryView'
 import CostOptimizationView from './views/CostOptimizationView'
 import AdditionalToolsView from './views/AdditionalToolsView'
+import SkillsInActionView from './views/SkillsInActionView'
 import SecurityGuardrailsView from './views/SecurityGuardrailsView'
 import ObservabilityView from './views/ObservabilityView'
 import CorrectingMistakesView from './views/CorrectingMistakesView'
@@ -39,18 +43,22 @@ const CHAPTERS: Chapter[] = [
   { index: 10, title: 'Correcting Mistakes' },
   { index: 11, title: 'The Goal' },
   { index: 12, title: 'Harness Techniques' },
-  { index: 13, title: 'Your Techniques' },
-  { index: 14, title: 'AGENTS.md' },
-  { index: 15, title: 'Iterate Often' },
-  { index: 16, title: 'Memory' },
-  { index: 17, title: 'Cost Optimization' },
-  { index: 18, title: 'Additional Tools' },
-  { index: 19, title: 'Security Guardrails' },
-  { index: 20, title: 'Observability' },
-  { index: 21, title: 'Closing' },
+  { index: 13, title: 'Sub-Agents' },
+  { index: 14, title: 'Research without Sub-Agents' },
+  { index: 15, title: 'Research with Sub-Agents' },
+  { index: 16, title: 'Your Techniques' },
+  { index: 17, title: 'AGENTS.md' },
+  { index: 18, title: 'Iterate Often' },
+  { index: 19, title: 'Memory' },
+  { index: 20, title: 'Cost Optimization' },
+  { index: 21, title: 'Additional Tools' },
+  { index: 22, title: 'Skills in Action' },
+  { index: 23, title: 'Security Guardrails' },
+  { index: 24, title: 'Observability' },
+  { index: 25, title: 'Closing' },
 ]
 
-const TOTAL_VIEWS = 22
+const TOTAL_VIEWS = 26
 
 function useViews(goForward: () => void, goToStart: () => void): ReactNode[] {
   return useMemo(
@@ -68,12 +76,16 @@ function useViews(goForward: () => void, goToStart: () => void): ReactNode[] {
       <CorrectingMistakesView />,
       <TheGoalView />,
       <HarnessTechniquesView />,
+      <SubAgentsView />,
+      <ResearchWithoutSubagentsView />,
+      <ResearchWithSubagentsView />,
       <UserTechniquesView />,
       <AgentsMdView />,
       <IterateView />,
       <MemoryView />,
       <CostOptimizationView />,
       <AdditionalToolsView />,
+      <SkillsInActionView />,
       <SecurityGuardrailsView />,
       <ObservabilityView />,
       <ClosingQuoteView onStartAgain={goToStart} />,

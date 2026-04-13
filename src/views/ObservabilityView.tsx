@@ -103,7 +103,7 @@ const ITEMS: CardProps[] = [
 export default function ObservabilityView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 20</span>
+      <span style={chapterLabel}>Chapter 24</span>
       <h2 style={heading}>Observability</h2>
 
       <p style={body}>

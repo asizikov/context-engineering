@@ -103,7 +103,7 @@ const GUARDRAILS: GuardrailProps[] = [
 export default function SecurityGuardrailsView() {
   return (
     <div style={page}>
-      <span style={chapterLabel}>Chapter 19</span>
+      <span style={chapterLabel}>Chapter 23</span>
       <h2 style={heading}>Security Guardrails</h2>
 
       <p style={body}>

@@ -133,7 +133,7 @@ export default function CostOptimizationView() {
   return (
     <div style={page}>
       <style>{GRID_STYLE}</style>
-      <span style={chapterLabel}>Chapter 17</span>
+      <span style={chapterLabel}>Chapter 20</span>
       <h2 style={heading}>Cost Optimization</h2>
 
       <p style={body}>
