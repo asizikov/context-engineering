@@ -29,6 +29,7 @@ import SecurityGuardrailsView from './views/SecurityGuardrailsView'
 import ObservabilityView from './views/ObservabilityView'
 import CorrectingMistakesView from './views/CorrectingMistakesView'
 import ClosingQuoteView from './views/ClosingQuoteView'
+import Footer from './components/Footer'
 
 const CHAPTERS: Chapter[] = [
   { index: 1, title: 'What is Context', slug: 'what-is-context' },
@@ -127,6 +128,8 @@ export default function App() {
         onForward={nav.goForward}
         currentIndex={nav.currentIndex}
       />
+
+      <Footer />
     </>
   )
 }

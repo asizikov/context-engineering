@@ -57,14 +57,6 @@ const startBtn: CSSProperties = {
   transition: 'transform 0.2s, box-shadow 0.2s',
 }
 
-const footer: CSSProperties = {
-  position: 'absolute',
-  bottom: 32,
-  fontSize: '13px',
-  color: '#bbb',
-  letterSpacing: '0.05em',
-}
-
 export default function LandingView({ onStart }: LandingViewProps) {
   return (
     <div style={container}>
@@ -105,8 +97,6 @@ export default function LandingView({ onStart }: LandingViewProps) {
       >
         Suggestions? File an issue in the repository
       </a>
-
-      <span style={footer}>© Anton Sizikov — Solutions Engineer @ GitHub</span>
     </div>
   )
 }
