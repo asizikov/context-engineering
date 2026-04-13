@@ -38,7 +38,7 @@ const heading: CSSProperties = {
 const quoteBlock: CSSProperties = {
   borderLeft: '4px solid #111',
   padding: '24px 32px',
-  margin: '0 0 24px',
+  margin: '0 0 48px',
   maxWidth: 560,
   textAlign: 'left',
 }
@@ -57,7 +57,7 @@ const attribution: CSSProperties = {
   fontSize: '15px',
   fontWeight: 600,
   color: '#555',
-  margin: '0 0 4px',
+  margin: '16px 0 4px',
 }
 
 const role: CSSProperties = {
@@ -127,10 +127,9 @@ export default function ClosingQuoteView({ onStartAgain }: ClosingQuoteViewProps
           obsolete tomorrow, so your best bet is to focus on the foundations.
           Don't overuse the context window!"
         </p>
+        <p style={attribution}>D. Losert</p>
+        <p style={role}>Strategic Technical Architect — GitHub</p>
       </div>
-
-      <p style={attribution}>D. Losert</p>
-      <p style={role}>Strategic Technical Architect — GitHub</p>
 
       <button
         style={startBtn}
