@@ -4,6 +4,7 @@ import { useIsMobile } from '../hooks/useIsMobile'
 export interface Chapter {
   index: number
   title: string
+  slug: string
 }
 
 interface SidebarProps {

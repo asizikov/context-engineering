@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback, useMemo, useEffect } from 'react'
 
 export type NavigationDirection = 'forward' | 'back' | 'none'
 
@@ -13,10 +13,52 @@ export interface NavigationState {
   goTo: (index: number) => void
 }
 
-export function useNavigation(totalViews: number): NavigationState {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [maxVisited, setMaxVisited] = useState(0)
+export interface HashRouting {
+  indexToSlug: (index: number) => string | undefined
+  slugToIndex: (slug: string) => number | undefined
+}
+
+function readHashIndex(routing: HashRouting | undefined): number {
+  if (!routing) return 0
+  const hash = window.location.hash.replace(/^#/, '')
+  if (!hash) return 0
+  const index = routing.slugToIndex(hash)
+  return index ?? 0
+}
+
+export function useNavigation(totalViews: number, hashRouting?: HashRouting): NavigationState {
+  const initialIndex = readHashIndex(hashRouting)
+  const [currentIndex, setCurrentIndex] = useState(initialIndex)
+  const [maxVisited, setMaxVisited] = useState(initialIndex)
   const [direction, setDirection] = useState<NavigationDirection>('none')
+
+  // Sync hash to URL when navigation changes
+  useEffect(() => {
+    if (!hashRouting) return
+    const slug = hashRouting.indexToSlug(currentIndex)
+    const newHash = slug ? `#${slug}` : ''
+    if (window.location.hash !== newHash) {
+      window.history.replaceState(null, '', newHash || window.location.pathname)
+    }
+  }, [currentIndex, hashRouting])
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    if (!hashRouting) return
+    const onHashChange = () => {
+      const index = readHashIndex(hashRouting)
+      setCurrentIndex((prev) => {
+        if (index !== prev && index >= 0 && index < totalViews) {
+          setDirection(index > prev ? 'forward' : 'back')
+          setMaxVisited((m) => Math.max(m, index))
+          return index
+        }
+        return prev
+      })
+    }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [hashRouting, totalViews])
 
   const canGoBack = currentIndex > 0
   const canGoForward = currentIndex < totalViews - 1
