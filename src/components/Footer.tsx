@@ -2,13 +2,12 @@ import type { CSSProperties } from 'react'
 
 const footer: CSSProperties = {
   position: 'fixed',
-  bottom: 0,
+  bottom: 68,
   left: 0,
   right: 0,
   textAlign: 'center',
   fontSize: '13px',
   color: '#bbb',
-  padding: '10px 0',
   pointerEvents: 'none',
   zIndex: 10,
 }
