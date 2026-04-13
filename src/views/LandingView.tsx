@@ -106,7 +106,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
         Suggestions? File an issue in the repository
       </a>
 
-      <span style={footer}>Scroll-free, one idea at a time</span>
+      <span style={footer}>© Anton Sizikov — Solutions Engineer @ GitHub</span>
     </div>
   )
 }
