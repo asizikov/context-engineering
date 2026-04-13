@@ -35,6 +35,14 @@ const heading: CSSProperties = {
   textAlign: 'center',
 }
 
+const introText: CSSProperties = {
+  fontSize: 'clamp(16px, 2.5vw, 20px)',
+  lineHeight: 1.6,
+  color: '#555',
+  margin: '0 0 32px',
+  maxWidth: 560,
+}
+
 const quoteBlock: CSSProperties = {
   borderLeft: '4px solid #111',
   padding: '24px 32px',
@@ -120,6 +128,10 @@ export default function ClosingQuoteView({ onStartAgain }: ClosingQuoteViewProps
     <div style={page}>
       <span style={chapterLabel}>Closing</span>
       <h2 style={heading}>Thank You</h2>
+
+      <p style={introText}>
+        I'd like to wrap up with a quote from my colleague:
+      </p>
 
       <div style={quoteBlock}>
         <p style={quoteText}>
