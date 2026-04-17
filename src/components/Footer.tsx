@@ -1,19 +1,13 @@
-import type { CSSProperties } from 'react'
-
-const footer: CSSProperties = {
-  position: 'fixed',
-  bottom: 68,
-  left: 0,
-  right: 0,
-  textAlign: 'center',
-  fontSize: '13px',
-  color: '#bbb',
-  pointerEvents: 'none',
-  zIndex: 10,
+interface FooterProps {
+  hasNavigation: boolean
 }
 
-export default function Footer() {
+export default function Footer({ hasNavigation }: FooterProps) {
+  const className = hasNavigation ? 'app-footer app-footer--with-nav' : 'app-footer'
+
   return (
-    <span style={footer}>© Anton Sizikov — Solutions Engineer @ GitHub</span>
+    <footer className={className}>
+      © Anton Sizikov — Solutions Engineer @ GitHub
+    </footer>
   )
 }

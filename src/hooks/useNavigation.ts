@@ -42,6 +42,46 @@ export function useNavigation(totalViews: number, hashRouting?: HashRouting): Na
     }
   }, [currentIndex, hashRouting])
 
+  // Handle left/right arrow keys for navigation
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+
+      const target = e.target as HTMLElement | null
+      if (target) {
+        const tag = target.tagName
+        if (
+          tag === 'INPUT' ||
+          tag === 'TEXTAREA' ||
+          tag === 'SELECT' ||
+          target.isContentEditable
+        ) {
+          return
+        }
+      }
+
+      setCurrentIndex((prev) => {
+        if (e.key === 'ArrowRight') {
+          if (prev < totalViews - 1) {
+            setDirection('forward')
+            const next = prev + 1
+            setMaxVisited((m) => Math.max(m, next))
+            return next
+          }
+        } else {
+          if (prev > 0) {
+            setDirection('back')
+            return prev - 1
+          }
+        }
+        return prev
+      })
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [totalViews])
+
   // Handle browser back/forward buttons
   useEffect(() => {
     if (!hashRouting) return

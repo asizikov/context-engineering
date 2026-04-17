@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+:root {
+  --footer-space: 56px;
+  --footer-space-with-nav: 104px;
+}
+
 *,
 *::before,
 *::after {
@@ -7,11 +12,19 @@
 }
 
 html,
-body,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  background: #fff;
+}
+
 #root {
   margin: 0;
   padding: 0;
   min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   background: #fff;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     sans-serif;
@@ -35,4 +48,33 @@ button {
 button:focus-visible {
   outline: 2px solid #111;
   outline-offset: 3px;
+}
+
+.view-transition .view-layer > * {
+  min-height: calc(100dvh - var(--footer-space)) !important;
+}
+
+.view-transition--with-nav .view-layer > * {
+  min-height: calc(100dvh - var(--footer-space-with-nav)) !important;
+}
+
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--footer-space);
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #bbb;
+  padding: 16px;
+  margin-top: auto;
+  pointer-events: none;
+  position: relative;
+  z-index: 110;
+}
+
+.app-footer--with-nav {
+  min-height: var(--footer-space-with-nav);
+  padding: 16px 16px 72px;
 }

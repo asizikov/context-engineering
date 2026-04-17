@@ -107,6 +107,7 @@ export default function App() {
   const nav = useNavigation(TOTAL_VIEWS, hashRouting)
   const goToStart = useCallback(() => nav.goTo(0), [nav.goTo])
   const views = useViews(nav.goForward, goToStart)
+  const hasNavigation = nav.currentIndex !== 0
 
   return (
     <>
@@ -117,7 +118,11 @@ export default function App() {
         onNavigate={nav.goTo}
       />
 
-      <ViewTransition viewKey={nav.currentIndex} direction={nav.direction}>
+      <ViewTransition
+        viewKey={nav.currentIndex}
+        direction={nav.direction}
+        hasNavigation={hasNavigation}
+      >
         {views[nav.currentIndex]}
       </ViewTransition>
 
@@ -129,7 +134,7 @@ export default function App() {
         currentIndex={nav.currentIndex}
       />
 
-      <Footer />
+      <Footer hasNavigation={hasNavigation} />
     </>
   )
 }
