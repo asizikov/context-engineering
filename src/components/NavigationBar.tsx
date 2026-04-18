@@ -6,6 +6,7 @@ interface NavigationBarProps {
   onBack: () => void
   onForward: () => void
   currentIndex: number
+  sidebarOffset?: number
 }
 
 const bar: CSSProperties = {
@@ -42,11 +43,17 @@ export default function NavigationBar({
   onBack,
   onForward,
   currentIndex,
+  sidebarOffset = 0,
 }: NavigationBarProps) {
   if (currentIndex === 0) return null
 
+  const barStyle: CSSProperties = {
+    ...bar,
+    paddingLeft: sidebarOffset + 40,
+  }
+
   return (
-    <div style={bar}>
+    <div style={barStyle}>
       <button
         style={{ ...btn, opacity: canGoBack ? 1 : 0.25 }}
         onClick={onBack}

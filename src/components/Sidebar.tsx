@@ -59,7 +59,7 @@ const backdrop = (open: boolean): CSSProperties => ({
 const hamburgerBtn: CSSProperties = {
   position: 'fixed',
   top: 16,
-  right: 16,
+  left: 16,
   zIndex: 201,
   background: 'none',
   border: 'none',

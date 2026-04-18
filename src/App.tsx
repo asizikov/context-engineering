@@ -1,5 +1,6 @@
 import { useCallback, useMemo, type ReactNode } from 'react'
 import { useNavigation, type HashRouting } from './hooks/useNavigation'
+import { useIsMobile } from './hooks/useIsMobile'
 import ViewTransition from './components/ViewTransition'
 import NavigationBar from './components/NavigationBar'
 import Sidebar, { type Chapter } from './components/Sidebar'
@@ -108,6 +109,8 @@ export default function App() {
   const goToStart = useCallback(() => nav.goTo(0), [nav.goTo])
   const views = useViews(nav.goForward, goToStart)
   const hasNavigation = nav.currentIndex !== 0
+  const isMobile = useIsMobile()
+  const sidebarOffset = isMobile ? 0 : 200
 
   return (
     <>
@@ -122,6 +125,7 @@ export default function App() {
         viewKey={nav.currentIndex}
         direction={nav.direction}
         hasNavigation={hasNavigation}
+        sidebarOffset={sidebarOffset}
       >
         {views[nav.currentIndex]}
       </ViewTransition>
@@ -132,6 +136,7 @@ export default function App() {
         onBack={nav.goBack}
         onForward={nav.goForward}
         currentIndex={nav.currentIndex}
+        sidebarOffset={sidebarOffset}
       />
 
       <Footer hasNavigation={hasNavigation} />

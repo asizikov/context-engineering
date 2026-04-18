@@ -1,15 +1,24 @@
 import { useState, useEffect } from 'react'
 
-export function useIsMobile(breakpoint = 1024): boolean {
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= breakpoint)
+export function useIsMobile(breakpointW = 1024, breakpointH = 900): boolean {
+  const check = () =>
+    window.innerWidth <= breakpointW || window.innerHeight <= breakpointH
+
+  const [isMobile, setIsMobile] = useState(check)
 
   useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${breakpoint}px)`)
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
-    mq.addEventListener('change', handler)
-    setIsMobile(mq.matches)
-    return () => mq.removeEventListener('change', handler)
-  }, [breakpoint])
+    const mqW = window.matchMedia(`(max-width: ${breakpointW}px)`)
+    const mqH = window.matchMedia(`(max-height: ${breakpointH}px)`)
+    const handler = () => setIsMobile(check)
+    mqW.addEventListener('change', handler)
+    mqH.addEventListener('change', handler)
+    setIsMobile(check())
+    return () => {
+      mqW.removeEventListener('change', handler)
+      mqH.removeEventListener('change', handler)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [breakpointW, breakpointH])
 
   return isMobile
 }
