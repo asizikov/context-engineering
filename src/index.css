@@ -85,13 +85,9 @@ button:focus-visible {
 
 .app-footer {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: flex-end;
   min-height: var(--footer-space);
-  text-align: center;
-  font-size: 13px;
-  line-height: 1.4;
-  color: #bbb;
   padding: 16px;
   margin-top: auto;
   pointer-events: none;
@@ -101,7 +97,17 @@ button:focus-visible {
 
 .app-footer--with-nav {
   min-height: var(--footer-space-with-nav);
-  padding: 16px 16px 72px;
+}
+
+.app-footer__content {
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #bbb;
+}
+
+.app-footer--with-nav .app-footer__content {
+  margin-bottom: 8px;
 }
 
 .chapter-page--wide {

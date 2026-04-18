@@ -7,7 +7,9 @@ export default function Footer({ hasNavigation }: FooterProps) {
 
   return (
     <footer className={className}>
-      © Anton Sizikov — Solutions Engineer @ GitHub
+      <div className="app-footer__content">
+        © Anton Sizikov — Solutions Engineer @ GitHub
+      </div>
     </footer>
   )
 }

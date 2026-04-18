@@ -19,7 +19,6 @@ const bar: CSSProperties = {
   justifyContent: 'space-between',
   padding: '20px 40px',
   zIndex: 100,
-  background: 'linear-gradient(transparent, rgba(255,255,255,0.95) 40%)',
   pointerEvents: 'none',
 }
 
