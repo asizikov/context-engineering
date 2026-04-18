@@ -1,5 +1,4 @@
 import { useState, type CSSProperties } from 'react'
-import { useIsMobile } from '../hooks/useIsMobile'
 
 export interface Chapter {
   index: number
@@ -8,6 +7,14 @@ export interface Chapter {
 }
 
 interface SidebarProps {
+  drawerMode: boolean
+  chapters: Chapter[]
+  currentIndex: number
+  maxVisited: number
+  onNavigate: (index: number) => void
+}
+
+interface ChapterListProps {
   chapters: Chapter[]
   currentIndex: number
   maxVisited: number
@@ -15,17 +22,14 @@ interface SidebarProps {
 }
 
 const rail: CSSProperties = {
-  position: 'fixed',
+  position: 'sticky',
   top: 0,
-  left: 0,
-  bottom: 0,
-  width: 200,
+  height: '100dvh',
   padding: '32px 0 32px 20px',
   display: 'flex',
   flexDirection: 'column',
   gap: 2,
   overflowY: 'auto',
-  zIndex: 100,
 }
 
 const mobileDrawer = (open: boolean): CSSProperties => ({
@@ -133,7 +137,7 @@ function ChapterList({
   currentIndex,
   maxVisited,
   onNavigate,
-}: SidebarProps) {
+}: ChapterListProps) {
   return (
     <>
       {chapters.map((ch) => {
@@ -157,17 +161,17 @@ function ChapterList({
 }
 
 export default function Sidebar({
+  drawerMode,
   chapters,
   currentIndex,
   maxVisited,
   onNavigate,
 }: SidebarProps) {
-  const isMobile = useIsMobile()
   const [isOpen, setIsOpen] = useState(false)
 
   if (currentIndex === 0) return null
 
-  if (isMobile) {
+  if (drawerMode) {
     const handleNavigate = (index: number) => {
       setIsOpen(false)
       onNavigate(index)
@@ -211,13 +215,15 @@ export default function Sidebar({
   }
 
   return (
-    <nav style={rail}>
-      <ChapterList
-        chapters={chapters}
-        currentIndex={currentIndex}
-        maxVisited={maxVisited}
-        onNavigate={onNavigate}
-      />
-    </nav>
+    <aside className="app-shell__sidebar">
+      <nav style={rail} aria-label="Chapter navigation">
+        <ChapterList
+          chapters={chapters}
+          currentIndex={currentIndex}
+          maxVisited={maxVisited}
+          onNavigate={onNavigate}
+        />
+      </nav>
+    </aside>
   )
 }

@@ -109,37 +109,39 @@ export default function App() {
   const goToStart = useCallback(() => nav.goTo(0), [nav.goTo])
   const views = useViews(nav.goForward, goToStart)
   const hasNavigation = nav.currentIndex !== 0
-  const isMobile = useIsMobile()
-  const sidebarOffset = isMobile ? 0 : 200
+  const isDrawerMode = useIsMobile(1180, 900)
+  const useDrawerNavigation = !hasNavigation || isDrawerMode
 
   return (
-    <>
+    <div className={useDrawerNavigation ? 'app-shell app-shell--drawer' : 'app-shell'}>
       <Sidebar
+        drawerMode={useDrawerNavigation}
         chapters={CHAPTERS}
         currentIndex={nav.currentIndex}
         maxVisited={nav.maxVisited}
         onNavigate={nav.goTo}
       />
 
-      <ViewTransition
-        viewKey={nav.currentIndex}
-        direction={nav.direction}
-        hasNavigation={hasNavigation}
-        sidebarOffset={sidebarOffset}
-      >
-        {views[nav.currentIndex]}
-      </ViewTransition>
+      <div className="app-shell__main">
+        <ViewTransition
+          viewKey={nav.currentIndex}
+          direction={nav.direction}
+          hasNavigation={hasNavigation}
+        >
+          {views[nav.currentIndex]}
+        </ViewTransition>
 
-      <NavigationBar
-        canGoBack={nav.canGoBack}
-        canGoForward={nav.canGoForward}
-        onBack={nav.goBack}
-        onForward={nav.goForward}
-        currentIndex={nav.currentIndex}
-        sidebarOffset={sidebarOffset}
-      />
+        <NavigationBar
+          canGoBack={nav.canGoBack}
+          canGoForward={nav.canGoForward}
+          onBack={nav.goBack}
+          onForward={nav.goForward}
+          currentIndex={nav.currentIndex}
+          drawerMode={useDrawerNavigation}
+        />
 
-      <Footer hasNavigation={hasNavigation} />
-    </>
+        <Footer hasNavigation={hasNavigation} />
+      </div>
+    </div>
   )
 }

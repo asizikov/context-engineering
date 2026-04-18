@@ -3,6 +3,7 @@
 :root {
   --footer-space: 56px;
   --footer-space-with-nav: 104px;
+  --app-sidebar-width: 220px;
 }
 
 *,
@@ -32,6 +33,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #111;
   overflow-x: hidden;
+}
+
+.app-shell {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: var(--app-sidebar-width) minmax(0, 1fr);
+}
+
+.app-shell--drawer {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.app-shell__sidebar {
+  min-width: 0;
+  background: #fff;
+  border-right: 1px solid #f2f2f2;
+  position: relative;
+  z-index: 120;
+}
+
+.app-shell__main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -77,4 +102,23 @@ button:focus-visible {
 .app-footer--with-nav {
   min-height: var(--footer-space-with-nav);
   padding: 16px 16px 72px;
+}
+
+.chapter-page--wide {
+  width: 100%;
+}
+
+.chapter-split {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: start;
+}
+
+.chapter-split > * {
+  min-width: 0;
+}
+
+@media (max-width: 1320px) {
+  .chapter-split {
+    grid-template-columns: 1fr !important;
+  }
 }

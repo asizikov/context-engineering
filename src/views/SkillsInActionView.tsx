@@ -278,7 +278,7 @@ export default function SkillsInActionView() {
   const terminalDone = config.rightState === 'terminal-done'
 
   return (
-    <div style={page}>
+    <div style={page} className="chapter-page chapter-page--wide">
       <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }`}</style>
 
       <span style={chapterLabel}>Chapter 22</span>
@@ -288,7 +288,7 @@ export default function SkillsInActionView() {
         — the model decides which skill to invoke and the <code style={{ background: '#f3f3f3', padding: '2px 6px', borderRadius: 4, fontSize: '14px' }}>SKILL.md</code> tells it exactly what to do.
       </p>
 
-      <div style={splitLayout}>
+      <div style={splitLayout} className="chapter-split">
         {/* Left: Conversation */}
         <div style={panelStyle}>
           <div style={panelHeader('#fff')}>

@@ -270,7 +270,7 @@ export default function ResearchWithoutSubagentsView() {
   }, [step])
 
   return (
-    <div style={page}>
+    <div style={page} className="chapter-page chapter-page--wide">
       <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }`}</style>
 
       <span style={chapterLabel}>Chapter 14</span>
@@ -279,7 +279,7 @@ export default function ResearchWithoutSubagentsView() {
         The agent searches files directly — every file it reads stays in the main context.
       </p>
 
-      <div style={splitLayout}>
+      <div style={splitLayout} className="chapter-split">
         {/* Left: Conversation */}
         <div style={panelStyle}>
           <div style={panelHeader('#fff')}>

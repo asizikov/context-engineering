@@ -244,7 +244,7 @@ export default function InteractiveAgentLoopView() {
   }, [step])
 
   return (
-    <div style={page}>
+    <div style={page} className="chapter-page chapter-page--wide">
       <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }`}</style>
 
       <span style={chapterLabel}>Chapter 06</span>
@@ -257,7 +257,7 @@ export default function InteractiveAgentLoopView() {
         — conversation on the left, growing context window on the right.
       </p>
 
-      <div style={splitLayout}>
+      <div style={splitLayout} className="chapter-split">
         {/* Left: Conversation */}
         <div style={panelStyle}>
           <div style={panelHeader('#fff')}>

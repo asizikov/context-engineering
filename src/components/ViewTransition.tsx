@@ -11,7 +11,6 @@ interface ViewTransitionProps {
   direction: NavigationDirection
   children: ReactNode
   hasNavigation: boolean
-  sidebarOffset?: number
 }
 
 type Phase = 'enter' | 'active' | 'exit'
@@ -59,7 +58,6 @@ export default function ViewTransition({
   direction,
   children,
   hasNavigation,
-  sidebarOffset = 0,
 }: ViewTransitionProps) {
   const [layers, setLayers] = useState<Layer[]>([
     { key: viewKey, content: children, phase: 'active' },
@@ -107,7 +105,7 @@ export default function ViewTransition({
   return (
     <div
       className={hasNavigation ? 'view-transition view-transition--with-nav' : 'view-transition'}
-      style={{ position: 'relative', width: '100%', flex: 1, overflowX: 'hidden', paddingLeft: sidebarOffset }}
+      style={{ position: 'relative', width: '100%', flex: 1, overflowX: 'hidden' }}
     >
       {layers.map((layer) => (
         <div key={layer.key} className="view-layer" style={getStyle(layer.phase, direction)}>

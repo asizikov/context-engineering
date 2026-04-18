@@ -6,7 +6,7 @@ interface NavigationBarProps {
   onBack: () => void
   onForward: () => void
   currentIndex: number
-  sidebarOffset?: number
+  drawerMode?: boolean
 }
 
 const bar: CSSProperties = {
@@ -43,13 +43,13 @@ export default function NavigationBar({
   onBack,
   onForward,
   currentIndex,
-  sidebarOffset = 0,
+  drawerMode = false,
 }: NavigationBarProps) {
   if (currentIndex === 0) return null
 
   const barStyle: CSSProperties = {
     ...bar,
-    paddingLeft: sidebarOffset + 40,
+    left: drawerMode ? 0 : 'var(--app-sidebar-width)',
   }
 
   return (

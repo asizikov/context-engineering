@@ -268,7 +268,7 @@ export default function ContextPrimitivesView() {
   const handleSelect = (id: string) => setSelected((prev) => (prev === id ? null : id))
 
   return (
-    <div style={page}>
+    <div style={page} className="chapter-page chapter-page--wide">
       <span style={chapterLabel}>Chapter 05</span>
       <h2 style={heading}>Context Primitives</h2>
       <p style={subtitle}>
@@ -277,7 +277,7 @@ export default function ContextPrimitivesView() {
         behaves. Click any block to learn more.
       </p>
 
-      <div style={splitLayout}>
+      <div style={splitLayout} className="chapter-split">
         {/* Left: Context Window */}
         <div style={panelStyle}>
           <div style={panelHeader('#fff')}>
